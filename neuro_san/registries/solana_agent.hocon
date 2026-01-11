@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "description": "Solana expert agent for checking wallet balances",
+          "tags": ["solana", "blockchain"]
+      },
+        "llm_config": {
+    "model_name": "claude-3-5-sonnet-20241022"
+      },
+        "tools": [
+      {
+            "name": "solana_agent",
+            "function": {
+        "description": "I am a Solana expert assistant. I can check wallet balances upon request.",
+                  "parameters": {
+          "type": "object",
+                      "properties": {
+            "address": {
+              "type": "string",
+                              "description": "The Solana wallet address (public key) to check."
+                }
+          },
+          "required": ["address"]
+            }
+    },
+      "instructions": "You are a Solana expert assistant. Always use the get_balance tool to help users check their SOL balance.",
+              "tools": ["get_balance"]
+        },
+{
+      "name": "get_balance",
+              "class": "neuro_san.coded_tools.solana.balance.GetBalance"
+        }
+  ]
+  }
